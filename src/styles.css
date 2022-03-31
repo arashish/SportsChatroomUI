@@ -1,1 +1,51 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    /* background: linear-gradient(to bottom, #ffffff 5%, #33cc33 100%);
+    background-attachment: fixed; */
+    background-color: #222;
+}
+
+/* h1{
+    color: #839496
+} */
+
+h1 { color:  #839496; font-size: 48px; font-family: 'Signika', sans-serif; padding-bottom: 10px; }
+
+.sportsContainer{
+    width: 80%;
+    margin: 15px auto;
+    text-align: center;
+}
+
+.sportBox{
+    width: 60%;
+    height: 80px;
+    margin: 20px;
+    background-color: #839496;
+
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.sportBox:hover{
+    background-color:  #596364;
+    color: white;
+}
+
+.sportTable{
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-size: 18px;
+    vertical-align: middle;
+}
+
+.bigSportIcon{
+    width: 40px;
+}
+
+.sportIcon{
+    width: 55px;
+}
+
