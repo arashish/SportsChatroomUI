@@ -1,0 +1,14 @@
+<div class="sportsContainer">
+    <h1>Sports Chatroom!</h1>
+
+    <div class="sportBox" style="width: 100%;">
+        <table class="sportTable">
+            <tr>
+                <td><input type="text" class="textbox" placeholder="Enter a username" [(ngModel)]="username" required> </td>
+                <td style="width: 15%"><input type="button" class= "button" value="Go" (click)="getUsername()" > </td>
+            </tr>
+        </table>
+        <div *ngIf="errorResponse" [ngStyle]="{'color':'red'}">Username already exists!</div>
+    </div>
+
+</div>

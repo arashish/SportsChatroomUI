@@ -1,8 +1,8 @@
 <div class="sportsContainer">
-    <h1>Welcome To Sports Chatroom!</h1>
+    <h1>Sports Chatroom!</h1>
 
     <div class="sportBox">
-        <table class="sportTable" (click)="hello()">
+        <table class="sportTable" (click)="sportSelection('FOOTBALL')">
             <tr>
                 <td rowspan="2"><img class="bigSportIcon" src="assets/images/nfls.webp" alt="nfl"></td>
                 <td><span> NFL Season 2022</span></td>
@@ -14,7 +14,7 @@
     </div>
 
     <div class="sportBox">
-        <table class="sportTable">
+        <table class="sportTable" (click)="sportSelection('BOXING')">
             <tr>
                 <td rowspan="2"><img class="sportIcon" src="assets/images/boxing.webp" alt="nfl"></td>
                 <td><span> Boxing 2022</span></td>
@@ -26,7 +26,7 @@
     </div>
 
     <div class="sportBox">
-        <table class="sportTable">
+        <table class="sportTable" (click)="sportSelection('BASEBALL')">
             <tr>
                 <td rowspan="2"><img class="sportIcon" src="assets/images/mlbs.webp" alt="nfl"></td>
                 <td><span> Baseball Season 2022</span></td>
@@ -38,7 +38,7 @@
     </div>
 
     <div class="sportBox">
-        <table class="sportTable">
+        <table class="sportTable" (click)="sportSelection('BASKETBALL')">
             <tr>
                 <td rowspan="2"><img class="sportIcon" src="assets/images/nba.webp" alt="nfl"></td>
                 <td><span> Basketball Season 2022</span></td>
@@ -50,7 +50,7 @@
     </div>
 
     <div class="sportBox">
-        <table class="sportTable">
+        <table class="sportTable" (click)="sportSelection('HOCKEY')">
             <tr>
                 <td rowspan="2"><img class="sportIcon" src="assets/images/nhls.webp" alt="nfl"></td>
                 <td><span> Hockey Season 2022</span></td>

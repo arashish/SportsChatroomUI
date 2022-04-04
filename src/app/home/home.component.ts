@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TempdataService } from '../tempdata.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private tempdata:TempdataService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  hello(){
-    console.log("clicked!");
+  sportSelection(sportName : string){
+    this.tempdata.setSportName(sportName);
+    this.router.navigate(["/enterid"]);
   }
 
 }
