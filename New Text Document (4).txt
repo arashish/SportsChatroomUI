@@ -1,0 +1,27 @@
+Implementation -> Planning -> Plan procurements.
+It is designed to help you better protect your project, your company and finally enough your partner or your vendor that you'll use in the procurement process. (for products or services)
+
+Service Vendor (Hardware/Software)------>Our company---------> ARC company
+\
+Contract (Legal doc, obligation, schedule, policies, authority, resolution, Terms & conditions)
+
+Do we procure --> yes--->
+-> finish the procurement process
+-> Conduct procurements
+-> Administer procurements
+-> Close procurements
+
+
+Start Procurement
+-> Identify sellers
+-> Buyer issues a SOW (&PO) to the sellers
+-> Select the seller
+-> Start the work
+-> Seller issues invoices, buyer pays invoices
+-> close procurement
+
+Stakeholder Requirements, to make sure incorporating a third party's products or services won't have an impact to the end user customer licensing obligations. This gets more confusing when applications incorporate technology that adheres to open source licensing.
+
+Procure management plan provides guidance for procurements as contracts standard terms used and if the procurement is shared with other projects that is especially important for software companies where some technology may be used on more than one product lines, also includes rules for handling suppliers, constraints, assumptions and schedules.
+
+The procuremetn statement of work summarizes a descrpition with enough detail to ensure that the seller has the skills to do the work along with whatever information is necessary for the seller to reply to your proposal. (Have to include who will be performing quality assurance)
