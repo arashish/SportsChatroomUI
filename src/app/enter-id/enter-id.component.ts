@@ -16,6 +16,7 @@ export class EnterIdComponent implements OnInit {
 
   username: string = "";
   errorResponse: boolean = false;
+  userLoginTracking: any;
 
   ngOnInit(): void {
   }
@@ -23,23 +24,21 @@ export class EnterIdComponent implements OnInit {
   getUsername(){
     let resp = this.service.addUsername(new UserInfo(this.username,this.tempdata.getSportName()));
     resp.subscribe(data=>{
-      if (data == "Error: The entered username already exists!"){
-        this.errorResponse = true;
-        return;
-      }
-      this.tempdata.setId(Number(data));
+      this.userLoginTracking = data;
+      this.tempdata.setUserLoginTracking(data);
+      console.log(this.tempdata.getUserLoginTracking().loginTime)
       this.router.navigate(["/chatroom"]);
     }
-    //   , err => {
-    //   if (err instanceof HttpErrorResponse) {
-    //     console.log(err);
-    //     if (err.status === 401) {
-    //       this.errorMessage = ("Error: Invalid username!");
-    //     } else {
-    //       this.errorMessage = "Error: the entered username already exists!"
-    //     }
-    //   }
-    //  }
+      , err => {
+      if (err instanceof HttpErrorResponse) {
+        console.log(err);
+        if (err.status === 500) {
+          this.errorResponse = true;
+        } else {
+          this.errorResponse = true;
+        }
+      }
+     }
     )
 
   }

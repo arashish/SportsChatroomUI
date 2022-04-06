@@ -14,8 +14,8 @@ export class ApiService {
 
   baseUrl: string = "http://localhost:8080";
 
-  public addUsername(userInfo: UserInfo){
-    return this.http.post(this.baseUrl + '/addusername', userInfo, {responseType: 'text' as 'json'});
+  public addUsername(userInfo: UserInfo): Observable<UserInfo>{
+    return this.http.post<UserInfo>(this.baseUrl + '/addusername', userInfo);
   }
   
 }

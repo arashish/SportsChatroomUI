@@ -7,6 +7,7 @@ export class TempdataService {
 
   private sportName: string="";
   private id: number =0 ;
+  private userLoginTracking: any;
 
   constructor() { }
 
@@ -26,5 +27,12 @@ export class TempdataService {
     this.id =id;
   }
 
+  public getUserLoginTracking(){
+    return this.userLoginTracking;
+  }
+
+  public setUserLoginTracking(userLoginTracking: any){
+    this.userLoginTracking =userLoginTracking;
+  }
 
 }
