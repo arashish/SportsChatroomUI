@@ -1,20 +1,22 @@
 <div class="chatContainer">
     <h1 style="color:grey; text-align: center;">Chat Room</h1>
     <div class="parent" style="overflow-y:auto; height: 600px;">
-        <div class="container">
-            <p><span class="time-left">11:00</span> Hello. How are you today?</p>
-        </div>
+        <div *ngFor="let messageData of messageDatas">
+            <div class="container">
+                <p><span class="time-left">11:00</span> {{messageData.name}}</p>
+            </div>
 
-        <div class="container darker">
-            <p><span class="time-left">11:01</span> Hey! I'm fine. Thanks for asking!</p>
-        </div>
+            <div class="container darker">
+                <p><span class="time-left">11:01</span> Hey! I'm fine. Thanks for asking!</p>
+            </div>
 
-        <div class="container">
-            <p><span class="time-left">11:02</span> Sweet! So, what do you wanna do today?</p>
-        </div>
- 
-        <div class="container darker">
-            <p><span class="time-left">11:05</span> Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            <div class="container">
+                <p><span class="time-left">11:02</span> Sweet! So, what do you wanna do today?</p>
+            </div>
+    
+            <div class="container darker">
+                <p><span class="time-left">11:05</span> Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            </div>
         </div>
         
     </div>
@@ -23,8 +25,8 @@
     <div class="messageSendBox" style="width: 100%;">
         <table class="messageSendTable">
             <tr>
-                <td><input type="text" class="messageSendText" placeholder="Enter a username" required></td>
-                <td style="width: 100px; text-align: left;"><input type="button" class= "messageSendButton" value="Send"> </td>
+                <td><input type="text" class="messageSendText" placeholder="Enter a message" [(ngModel)]="messageToSend" required></td>
+                <td style="width: 100px; text-align: left;"><input type="button" class= "messageSendButton" value="Send" (click)="sendMessage()"> </td>
             </tr>
         </table>
     </div>
