@@ -1,19 +1,20 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Message } from '../models/Message';
 import { TempdataService } from '../tempdata.service';
 import { Subscription, switchMap, timer } from 'rxjs';
+import { WebSocketService } from '../web-socket.service';
 
 @Component({
   selector: 'app-chat-room',
   templateUrl: './chat-room.component.html',
   styleUrls: ['./chat-room.component.css']
 })
-export class ChatRoomComponent implements OnInit {
+export class ChatRoomComponent implements OnInit, OnDestroy {
 
-  constructor(private service:ApiService, private tempdata:TempdataService, private router: Router) { }
+  constructor(private service:ApiService, public tempdata:TempdataService, private router: Router, public webSocketService: WebSocketService) { }
 
   messageToSend: string ="";
   errorResponse: boolean = false;
@@ -24,42 +25,17 @@ export class ChatRoomComponent implements OnInit {
   subscription!: Subscription;
   statusText!: string;
   
-  ngOnInit() {
-    this.subscription = timer(0, 1000).pipe(
-      switchMap(() => this.service.retrievemessages())
-    ).subscribe(result => this.messageDatas = result);
+  ngOnInit(): void {
+    this.webSocketService.openWebSocket();
   }
 
-  ngOnDestroy() {
-      this.subscription.unsubscribe();
+  ngOnDestroy(): void {
+    this.webSocketService.closeWebSocket();
   }
 
   sendMessage(){
-    let resp = this.service.storemessage(new Message("",this.tempdata.getUserLoginTracking().userId, this.messageToSend, "", ""));
-    console.log("log1")
-    resp.subscribe(data=>{
-      console.log(this.tempdata.getUserLoginTracking().loginTime)
-      //this.router.navigate(["/chatroom"]);
-    }
-      , err => {
-      if (err instanceof HttpErrorResponse) {
-        console.log(err);
-        if (err.status === 500) {
-          this.errorResponse = true;
-        } else {
-          this.errorResponse = true;
-        }
-      }
-     }
-    )
-
-    console.log("log2")
-    resp = this.service.retrievemessages();
-    resp.subscribe(data=>{
-      console.log(data)
-    })
-
-    
+    const message = new Message(this.tempdata.getUsername(), this.messageToSend, new Date().toUTCString());
+    this.webSocketService.sendMessage(message);
   }
 
 }

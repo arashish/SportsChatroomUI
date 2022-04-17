@@ -22,24 +22,9 @@ export class EnterIdComponent implements OnInit {
   }
 
   getUsername(){
+    this.tempdata.setUsername(this.username);
     let resp = this.service.addUsername(new UserInfo(this.username,this.tempdata.getSportName()));
-    resp.subscribe(data=>{
-      this.userLoginTracking = data;
-      this.tempdata.setUserLoginTracking(data);
-      console.log(this.tempdata.getUserLoginTracking().loginTime)
-      this.router.navigate(["/chatroom"]);
-    }
-      , err => {
-      if (err instanceof HttpErrorResponse) {
-        console.log(err);
-        if (err.status === 500) {
-          this.errorResponse = true;
-        } else {
-          this.errorResponse = true;
-        }
-      }
-     }
-    )
-
+    this.router.navigate(["/chatroom"]);
   }
+  
 }

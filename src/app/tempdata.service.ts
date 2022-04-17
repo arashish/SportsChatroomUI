@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class TempdataService {
 
   private sportName: string="";
-  private id: string ="" ;
+  private username: string ="" ;
   private userLoginTracking: any;
 
   constructor() { }
@@ -19,12 +19,12 @@ export class TempdataService {
     this.sportName =sportName;
   }
 
-  public getId(){
-    return this.id;
+  public getUsername(){
+    return this.username;
   }
 
-  public setId(id: string){
-    this.id =id;
+  public setUsername(username: string){
+    this.username =username;
   }
 
   public getUserLoginTracking(){

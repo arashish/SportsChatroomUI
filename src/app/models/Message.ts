@@ -1,15 +1,12 @@
 export class Message {
-    messageId: string;
-    userId: string;
+    username: string;
     message: string;
-    messageDate: string;
     messageTime: string;
 
-    constructor (messageId: string, userId: string, message: string, messageDate: string, messagetime: string){
-        this.messageId = messageId;
-        this.userId = userId;
+    constructor (username: string, message: string, messageTime: string){
+        this.username = username;
         this.message = message;
-        this.messageDate = messageDate;
-        this.messageTime = messagetime;
+        this.messageTime = messageTime;
     }
+
 }
