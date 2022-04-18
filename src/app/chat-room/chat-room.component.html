@@ -1,28 +1,17 @@
 <div class="chatContainer">
-    <h1 style="color:grey; text-align: center;">Chat Room</h1>
-    <div class="parent" style="overflow-y:auto; height: 600px;">
+    <div style="color: black; text-align: right;"><span>Logged in as {{username}} </span> <span style="margin: 5px; color: blue; text-decoration: underline; cursor: pointer;" (click)="logout()">(logout)</span></div>
+    <h1 style="color:grey; text-align: center;">{{sportName}} Chat Room</h1>
+    <div class="parent"  #scrollMe [scrollTop]="scrollMe.scrollHeight">
         <div *ngFor="let chatMessage of webSocketService.message">
-            <div class="container">
-                <span>[{{chatMessage.messageTime | date:'h:mm:ss a z'}}] </span>
-                <strong [ngStyle]="chatMessage.username==tempdata.getUsername()?{'color':'red'} : {'color': 'blue'}">{{chatMessage.username}}: </strong>
-                <span>{{chatMessage.message}}</span>
+            <div class="messageContainer">
+                <p>
+                    <span>[{{chatMessage.messageTime | date:'h:mm:ss a z'}}] </span>
+                    <strong [ngStyle]="chatMessage.username==username?{'color':'blue'} : {'color': 'red'}">{{chatMessage.username}}: </strong>
+                    <span>{{chatMessage.message}}</span>
+                </p>
             </div>
-
-            <!-- <div class="container darker">
-                <p><span class="time-left">11:01</span> Hey! I'm fine. Thanks for asking!</p>
-            </div>
-
-            <div class="container">
-                <p><span class="time-left">11:02</span> Sweet! So, what do you wanna do today?</p>
-            </div>
-    
-            <div class="container darker">
-                <p><span class="time-left">11:05</span> Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
-            </div> -->
         </div>
-        
     </div>
-    
 
     <div class="messageSendBox" style="width: 100%;">
         <table class="messageSendTable">

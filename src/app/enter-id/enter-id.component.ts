@@ -23,6 +23,7 @@ export class EnterIdComponent implements OnInit {
 
   getUsername(){
     this.tempdata.setUsername(this.username);
+    sessionStorage.setItem('username', this.username)
     let resp = this.service.addUsername(new UserInfo(this.username,this.tempdata.getSportName()));
     this.router.navigate(["/chatroom"]);
   }

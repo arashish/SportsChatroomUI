@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   sportSelection(sportName : string){
     this.tempdata.setSportName(sportName);
+    sessionStorage.setItem('sportName', sportName);
     this.router.navigate(["/enterid"]);
   }
 

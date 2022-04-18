@@ -14,17 +14,17 @@ export class WebSocketService {
   }
 
   public openWebSocket(){
-    if (this.tempdata.getSportName() == "FOOTBALL"){
+    if (this.tempdata.getSportName() == "Football"){
       console.log("FOOTBALL");
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/footballchat')
-    } else if (this.tempdata.getSportName() == "BOXING") {
+    } else if (this.tempdata.getSportName() == "Boxing") {
       console.log("BOXING");
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/boxingchat')
-    }else if (this.tempdata.getSportName() == "BASEBALL") {
+    }else if (this.tempdata.getSportName() == "Baseball") {
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/baseballchat')
-    }else if (this.tempdata.getSportName() == "BASKETBALL") {
+    }else if (this.tempdata.getSportName() == "Basketball") {
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/basketballchat')
-    }else if (this.tempdata.getSportName() == "HOCKEY") {
+    }else if (this.tempdata.getSportName() == "Hockey") {
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/hockeychat')
     } else {
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/chat')
