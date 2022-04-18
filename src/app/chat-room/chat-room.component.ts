@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Message } from '../models/Message';
@@ -26,10 +26,22 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
 
   subscription!: Subscription;
   statusText!: string;
-  
+  imageUrl!: string;
+
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username') as string;
     this.sportName = sessionStorage.getItem('sportName') as string;
+    if (this.sportName == "Football"){
+      this.imageUrl = "assets/images/nfls.webp";
+    } else if (this.sportName == "Boxing") {
+      this.imageUrl = "assets/images/boxing.webp"
+    }else if (this.sportName == "Baseball") {
+      this.imageUrl = "assets/images/mlbs.webp"
+    }else if (this.sportName == "Basketball") {
+      this.imageUrl = "assets/images/nba.webp"
+    }else if (this.sportName == "Hockey") {
+      this.imageUrl = "assets/images/nhls.webp"
+    } 
     this.scrollToBottom();
     this.webSocketService.openWebSocket();
   }
@@ -44,10 +56,16 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
     } catch(err) { }                 
   }
 
-
-  ngOnDestroy(): void {
+  @HostListener('window:beforeunload')
+  async ngOnDestroy(): Promise<void> {
     this.webSocketService.closeWebSocket();
+    await this.logout();
   }
+
+  // @HostListener('window:beforeunload', ['$event'])
+  // async beforeunloadHandler(event:any) {
+    
+  // }
 
   sendMessage(){
     const message = new Message(this.username, this.messageToSend, this.sportName,new Date().toUTCString());
@@ -57,7 +75,17 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
   logout(){
     sessionStorage.setItem('username','');
     sessionStorage.setItem('sportName','');
-    this.router.navigate(["/home"]);
+    let resp = this.service.deleteUsername(this.username);
+    resp.subscribe(_data=>{
+      this.router.navigate(["/home"]);
+    }, err => {
+    if (err instanceof HttpErrorResponse) {
+      this.errorResponse = true;
+      console.log("Error deleting the Username");
+    }
+    })
+    //console.log("Going home..."+ this.username)
+    //this.router.navigate(["/home"]);
   }
 
 }

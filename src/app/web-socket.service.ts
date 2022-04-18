@@ -14,20 +14,19 @@ export class WebSocketService {
   }
 
   public openWebSocket(){
-    if (this.tempdata.getSportName() == "Football"){
-      console.log("FOOTBALL");
+    if (sessionStorage.getItem('sportName') == "Football"){
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/footballchat')
-    } else if (this.tempdata.getSportName() == "Boxing") {
-      console.log("BOXING");
+    } else if (sessionStorage.getItem('sportName') == "Boxing") {
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/boxingchat')
-    }else if (this.tempdata.getSportName() == "Baseball") {
+    }else if (sessionStorage.getItem('sportName') == "Baseball") {
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/baseballchat')
-    }else if (this.tempdata.getSportName() == "Basketball") {
+    }else if (sessionStorage.getItem('sportName') == "Basketball") {
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/basketballchat')
-    }else if (this.tempdata.getSportName() == "Hockey") {
+    }else if (sessionStorage.getItem('sportName') == "Hockey") {
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/hockeychat')
     } else {
-      this.webSocket = new WebSocket('ws://192.168.1.16:8080/chat')
+      //this.webSocket = new WebSocket('ws://192.168.1.16:8080/chat')
+      alert ("Error: Cannot connect to the chatroom!")
     }
 
     this.webSocket.onopen = (event) => {

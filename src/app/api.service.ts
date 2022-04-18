@@ -15,8 +15,14 @@ export class ApiService {
 
   baseUrl: string = "http://localhost:8080";
 
-  public addUsername(userInfo: UserInfo): Observable<UserInfo>{
+  public addUsername(userInfo: UserInfo){
     return this.http.post<UserInfo>(this.baseUrl + '/addusername', userInfo);
+  }
+
+  public deleteUsername(username: string){
+    console.log("It's deleteing")
+    const headers = new HttpHeaders();
+    return this.http.delete(this.baseUrl + '/deleteusername/' + username, {headers});
   }
   
   public storemessage(message: Message): Observable<Message>{

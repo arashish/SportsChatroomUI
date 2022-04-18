@@ -1,5 +1,6 @@
 <div class="chatContainer">
     <div style="color: black; text-align: right;"><span>Logged in as {{username}} </span> <span style="margin: 5px; color: blue; text-decoration: underline; cursor: pointer;" (click)="logout()">(logout)</span></div>
+    <img class="center" src="{{imageUrl}}" alt="Sport">
     <h1 style="color:grey; text-align: center;">{{sportName}} Chat Room</h1>
     <div class="parent"  #scrollMe [scrollTop]="scrollMe.scrollHeight">
         <div *ngFor="let chatMessage of webSocketService.message">
@@ -16,7 +17,7 @@
     <div class="messageSendBox" style="width: 100%;">
         <table class="messageSendTable">
             <tr>
-                <td><input type="text" class="messageSendText" placeholder="Enter a message" [(ngModel)]="messageToSend" required></td>
+                <td><input type="text" class="messageSendText" placeholder="Enter a message" [(ngModel)]="messageToSend" (keydown.enter)="sendMessage()" required></td>
                 <td style="width: 100px; text-align: left;"><input type="button" class= "messageSendButton" value="Send" (click)="sendMessage()"> </td>
             </tr>
         </table>

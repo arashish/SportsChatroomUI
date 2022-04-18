@@ -4,7 +4,7 @@
     <div class="sportBox noHover" style="width: 100%; height: 100px;">
         <table class="sportTable" border="1">
             <tr>
-                <td><input type="text" class="usernameBox" placeholder="Enter a username" [(ngModel)]="username" required>
+                <td><input type="text" class="usernameBox" placeholder="Enter a username" [(ngModel)]="username" (keydown.enter)="getUsername()">
                 <br><div *ngIf="errorResponse" [ngStyle]="{'color':'red'}">Username already exists! Try a different username.</div>
                 </td>
                 <td style="width: 15%"><input type="button" class= "usernameButton" value="Go" (click)="getUsername()" > </td>

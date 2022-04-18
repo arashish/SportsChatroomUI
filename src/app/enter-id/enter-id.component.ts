@@ -16,16 +16,30 @@ export class EnterIdComponent implements OnInit {
 
   username: string = "";
   errorResponse: boolean = false;
-  userLoginTracking: any;
+  sportName: string= "";
 
   ngOnInit(): void {
   }
 
   getUsername(){
-    this.tempdata.setUsername(this.username);
-    sessionStorage.setItem('username', this.username)
-    let resp = this.service.addUsername(new UserInfo(this.username,this.tempdata.getSportName()));
-    this.router.navigate(["/chatroom"]);
+    if (this.username != "") {
+      sessionStorage.setItem('username', this.username)
+      this.sportName = sessionStorage.getItem('sportName') as string;
+      let resp = this.service.addUsername(new UserInfo(this.username, this.sportName));
+      resp.subscribe(data=>{
+        this.router.navigate(["/chatroom"]);
+      }, err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 500) {
+            this.errorResponse = true;
+          } else {
+            this.errorResponse = true;
+          }
+        }
+       })
+    } else {
+      alert ("Error: The username cannot be blank");
+    }
   }
   
 }

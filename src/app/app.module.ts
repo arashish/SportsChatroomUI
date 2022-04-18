@@ -7,13 +7,15 @@ import { ChatRoomComponent } from './chat-room/chat-room.component';
 import { EnterIdComponent } from './enter-id/enter-id.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ChatRoomComponent,
-    EnterIdComponent
+    EnterIdComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

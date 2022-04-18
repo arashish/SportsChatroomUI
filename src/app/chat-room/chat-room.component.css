@@ -31,3 +31,11 @@
   float: left;
   color: #999;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+  width: 75px;
+}
