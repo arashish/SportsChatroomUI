@@ -14,6 +14,7 @@ export class WebSocketService {
   }
 
   public openWebSocket(){
+    console.log('Generating: ' + sessionStorage.getItem('sportName'));
     if (sessionStorage.getItem('sportName') == "Football"){
       this.webSocket = new WebSocket('ws://192.168.1.16:8080/footballchat')
     } else if (sessionStorage.getItem('sportName') == "Boxing") {

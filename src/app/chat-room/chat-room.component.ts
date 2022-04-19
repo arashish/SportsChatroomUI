@@ -12,7 +12,7 @@ import { WebSocketService } from '../web-socket.service';
   templateUrl: './chat-room.component.html',
   styleUrls: ['./chat-room.component.css']
 })
-export class ChatRoomComponent implements OnInit, OnDestroy {
+export class ChatRoomComponent implements OnInit {
   @ViewChild('scrollMe') private myScrollContainer!: ElementRef;
   constructor(private service:ApiService, public tempdata:TempdataService, private router: Router, public webSocketService: WebSocketService) { }
 
@@ -27,6 +27,8 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   statusText!: string;
   imageUrl!: string;
+  bulletinMessage !: string;
+  bulletins : any;
 
   ngOnInit(): void {
     this.username = sessionStorage.getItem('username') as string;
@@ -41,7 +43,27 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
       this.imageUrl = "assets/images/nba.webp"
     }else if (this.sportName == "Hockey") {
       this.imageUrl = "assets/images/nhls.webp"
-    } 
+    }
+    let resp = this.service.retrieveBulletin();
+    resp.subscribe(data=>{
+      this.bulletins = data;
+      console.log(this.bulletins);
+       for (var bulletin of this.bulletins){
+          console.log(bulletin.sportName);
+          console.log(typeof(bulletin.sportName))
+          if (bulletin.sportName === this.sportName)
+            {
+              this.bulletinMessage = bulletin.message;
+            }
+        }
+    }, err => {
+    if (err instanceof HttpErrorResponse) {
+      alert("Error: Cannot retrieve bulletin messages!");
+    }
+    })
+
+
+
     this.scrollToBottom();
     this.webSocketService.openWebSocket();
   }
@@ -56,11 +78,11 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
     } catch(err) { }                 
   }
 
-  @HostListener('window:beforeunload')
-  async ngOnDestroy(): Promise<void> {
-    this.webSocketService.closeWebSocket();
-    await this.logout();
-  }
+  // @HostListener('window:beforeunload')
+  // async ngOnDestroy(): Promise<void> {
+  //   this.webSocketService.closeWebSocket();
+  //   await this.logout();
+  // }
 
   // @HostListener('window:beforeunload', ['$event'])
   // async beforeunloadHandler(event:any) {
@@ -70,6 +92,8 @@ export class ChatRoomComponent implements OnInit, OnDestroy {
   sendMessage(){
     const message = new Message(this.username, this.messageToSend, this.sportName,new Date().toUTCString());
     this.webSocketService.sendMessage(message);
+    this.messageToSend ="";
+    console.log(this.webSocketService.message);
   }
 
   logout(){

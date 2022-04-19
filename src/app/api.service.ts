@@ -4,6 +4,7 @@ import { TempdataService } from './tempdata.service';
 import { UserInfo } from './models/UserInfo';
 import { Observable } from 'rxjs';
 import { Message } from './models/Message';
+import { Bulletin } from './models/Bulletin';
 
 
 @Injectable({
@@ -11,7 +12,7 @@ import { Message } from './models/Message';
 })
 export class ApiService {
 
-  constructor(private http: HttpClient, private tempdata: TempdataService) { }
+  constructor(private http: HttpClient) { }
 
   baseUrl: string = "http://localhost:8080";
 
@@ -29,7 +30,20 @@ export class ApiService {
     return this.http.post<Message>(this.baseUrl + '/storemessage', message);
   }
 
-  public retrievemessages(){
+  public retrieveBulletin(): Observable<Bulletin>{
+    const headers = new HttpHeaders();
+    return this.http.get<Bulletin>(this.baseUrl + '/retrievebulletin', {headers});
+  }
+
+  public updateBulletin(bulletin: Bulletin): Observable<Bulletin>{
+    return this.http.post<Bulletin>(this.baseUrl + '/updatebulletin', bulletin);
+  }
+
+  public retrieveUsers(){
+    return this.http.get(this.baseUrl + '/retrieveusers');
+  }
+
+  public retrieveMessages(): Observable<Message>{
     return this.http.get<Message>(this.baseUrl + '/retrievemessages');
   }
   

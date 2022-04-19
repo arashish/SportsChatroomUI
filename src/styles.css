@@ -123,6 +123,20 @@ h1 { color:  #c0ded9; font-size: 48px; font-family: 'Signika', sans-serif; paddi
     width: 100px;
   }
 
+  .updateSendButton {
+    background-color: #4b5250;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;  
+  }
+
+  .updateSendButton:hover{
+    background-color: #707a77;
+  }
+
   .messageSendBox{
     height: 60px;
     margin: 0px;

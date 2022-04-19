@@ -1,7 +1,8 @@
 <div class="chatContainer">
     <div style="color: black; text-align: right;"><span>Logged in as {{username}} </span> <span style="margin: 5px; color: blue; text-decoration: underline; cursor: pointer;" (click)="logout()">(logout)</span></div>
     <img class="center" src="{{imageUrl}}" alt="Sport">
-    <h1 style="color:grey; text-align: center;">{{sportName}} Chat Room</h1>
+    <h1 style="color:rgb(0, 0, 0); text-align: center;">{{sportName}} Chat Room</h1>
+    <h2 style="color:rgb(109, 47, 47); text-align: center;" class="blink_me">Bulletin Board - {{bulletinMessage}} </h2>
     <div class="parent"  #scrollMe [scrollTop]="scrollMe.scrollHeight">
         <div *ngFor="let chatMessage of webSocketService.message">
             <div class="messageContainer">

@@ -1,58 +1,69 @@
 <div class="chatContainer">
     <h1 style="color:grey; text-align: center;">Admin Panel</h1>
     <div class="parent"  #scrollMe [scrollTop]="scrollMe.scrollHeight">
-    <h3>Bulletin Board:</h3>
-    <!-- <table>
+    <h2 style="padding:15px">Bulletin Board:</h2>
+    <table style="padding:15px">
         <tr>
-            <th><span>Sport Name</span></th>
-            <th><span>Message</span></th>
-            <th></th>
+            <th style="width:10%;"><span>Sport Name</span></th>
+            <th style="width:70%"><span>Message</span></th>
+            <th style="width:10%;"></th>
         </tr>
         <tr>
-            <td><span>Football</span></td>
-            <td><input type="textarea" placeholder="Enter a message"></td>
-            <td><input type="button" value="submit"></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><span>Football</span></td>
+            <td><textarea id="subject" name="subject" placeholder="Write something.." [(ngModel)]="footballBulletinMessage" style="height:75px"></textarea></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><input class= "updateSendButton" type="button" (click)="updateBulletin('Football')" value="Update"></td>
         </tr>
         <tr>
-            <td><span>Boxing</span></td>
-            <td><input type="textarea" placeholder="Enter a message"></td>
-            <td><input type="button" value="submit"></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><span>Boxing</span></td>
+            <td><textarea id="subject" name="subject" placeholder="Write something.." [(ngModel)]="boxingBulletinMessage" style="height:75px"></textarea></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><input class= "updateSendButton" type="button" (click)="updateBulletin('Boxing')" value="Update"></td>
         </tr>
         <tr>
-            <td><span>Baseball</span></td>
-            <td><input type="textarea" placeholder="Enter a message"></td>
-            <td><input type="button" value="submit"></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><span>Baseball</span></td>
+            <td><textarea id="subject" name="subject" placeholder="Write something.." [(ngModel)]="baseballBulletinMessage" style="height:75px"></textarea></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><input class= "updateSendButton" type="button" (click)="updateBulletin('Baseball')" value="Update"></td>
         </tr>
         <tr>
-            <td><span>Basketball</span></td>
-            <td><input type="textarea" placeholder="Enter a message"></td>
-            <td><input type="button" value="submit"></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><span>Basketball</span></td>
+            <td><textarea id="subject" name="subject" placeholder="Write something.." [(ngModel)]="basketballBulletinMessage" style="height:75px"></textarea></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><input class= "updateSendButton" type="button" (click)="updateBulletin('Basketball')" value="Update"></td>
         </tr>
         <tr>
-            <td><span>Hockey</span></td>
-            <td><input type="textarea" placeholder="Enter a message"></td>
-            <td><input type="button" value="submit"></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><span>Hockey</span></td>
+            <td><textarea id="subject" name="subject" placeholder="Write something.." [(ngModel)]="hockeyBulletinMessage" style="height:75px"></textarea></td>
+            <td style="width:10%; vertical-align:top; text-align: left;"><input class= "updateSendButton" type="button" (click)="updateBulletin('Hockey')" value="Update"></td>
         </tr>
-    </table> -->
+    </table>
 
-    <div class="container">
-        <form action="/action_page.php">
-        <div class="row">
-          <div class="col-25">
-            <label for="subject">Subject</label>
-          </div>
-          <div class="col-75">
-            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
-          </div>
-        </div>
-        <br>
-        <div class="row">
-          <input type="submit" value="Submit">
-        </div>
-        </form>
-      </div>
-    
+    <div style="padding:15px">
+        <h2>Clear Users:</h2>
+        <textarea id="subject" name="subject" placeholder="Write something.." [(ngModel)]="footballBulletinMessage" style="height:75px"></textarea>
+        <input class= "updateSendButton" type="button" value="Clear">
     </div>
 
-    
+    <div style="padding:15px">
+      <h2>Clear messages:</h2>
+      <table border="1">
+        <tr>
+          <th>MessageId</th>
+          <th>Username</th>
+          <th>Message</th>
+          <th>SportName</th>
+          <th>MessageTime</th>
+        </tr>
+
+        <tr *ngFor="let message of messages">
+          <td>{{message.messageId}}</td>
+          <td>{{message.username}}</td>
+          <td>{{message.message}}</td>
+          <td>{{message.sportName}}</td>
+          <td>{{message.messageTime}}</td>
+        </tr> 
+      </table>
+      <br>
+      
+      <input class= "updateSendButton" type="button" value="Clear">
+  </div>
+
+   
 </div>
