@@ -19,7 +19,10 @@
   padding: 0px 10px;
   margin: 10px 25px;
   bottom: 10px;
+}
 
+p {
+  font-size: 18px;
 }
 
 .time-right {
@@ -41,11 +44,10 @@
 }
 
 .blink_me {
-  animation: blinker 1s linear infinite;
+  animation: mymove 1s infinite alternate;
 }
 
-@keyframes blinker {
-  50% {
-    opacity: 0;
-  }
+@keyframes mymove {
+  from {opacity:0;}
+  to {opacity: 1;}
 }

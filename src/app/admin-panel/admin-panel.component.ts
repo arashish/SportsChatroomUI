@@ -20,6 +20,7 @@ export class AdminPanelComponent implements OnInit {
 
   private bulletins: any;
   public messages: any;
+  public userInfos: any;
 
   ngOnInit(): void {
     let resp = this.service.retrieveBulletin();
@@ -43,17 +44,25 @@ export class AdminPanelComponent implements OnInit {
     }
     })
 
-    let resp2 = this.service.retrieveMessages();
+    let resp2 = this.service.retrieveUsers();
     resp2.subscribe(data=>{
+      this.userInfos = data;
+      console.log(this.userInfos);
+    }, err => {
+    if (err instanceof HttpErrorResponse) {
+      console.log("Error: Cannot retrieve users.");
+    }
+    })
+
+    let resp3 = this.service.retrieveMessages();
+    resp3.subscribe(data=>{
       this.messages = data;
       console.log(this.messages.message);
     }, err => {
     if (err instanceof HttpErrorResponse) {
-      alert("Error: Cannot retrieve bulletin messages!");
+      console.log("Error: Cannot retrieve messages.");
     }
     })
-
-
 
   }
 
@@ -79,13 +88,34 @@ export class AdminPanelComponent implements OnInit {
       console.log('Hockey')
     }
 
-    console.log(id + message)
     let resp = this.service.updateBulletin(new Bulletin(id,sportName,message));
     resp.subscribe(data=>{
       alert("Bulletin message updated!");
     }, err => {
     if (err instanceof HttpErrorResponse) {
       alert("Error: Cannot retrieve bulletin messages!");
+    }
+    })
+  }
+
+  clearUsers(){
+    let resp = this.service.deleteUsers();
+    resp.subscribe(_data=>{
+      window.location.reload();
+    }, err => {
+    if (err instanceof HttpErrorResponse) {
+      console.log("Error deleting the usernames");
+    }
+    })
+  }
+
+  clearMessages(){
+    let resp = this.service.deleteMessages();
+    resp.subscribe(_data=>{
+      window.location.reload();
+    }, err => {
+    if (err instanceof HttpErrorResponse) {
+      console.log("Error deleting the messages");
     }
     })
   }

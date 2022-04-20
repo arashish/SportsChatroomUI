@@ -1,6 +1,6 @@
 <div class="chatContainer">
     <h1 style="color:grey; text-align: center;">Admin Panel</h1>
-    <div class="parent"  #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <div class="main"  #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <h2 style="padding:15px">Bulletin Board:</h2>
     <table style="padding:15px">
         <tr>
@@ -35,14 +35,29 @@
         </tr>
     </table>
 
-    <div style="padding:15px">
-        <h2>Clear Users:</h2>
-        <textarea id="subject" name="subject" placeholder="Write something.." [(ngModel)]="footballBulletinMessage" style="height:75px"></textarea>
-        <input class= "updateSendButton" type="button" value="Clear">
+    <div style="padding:15px;">
+    <h2>Clear Users:</h2>
+        <table border="1">
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>SportName</th>
+                <th>CreateDate</th>
+            </tr>
+
+            <tr *ngFor="let userInfo of userInfos">
+                <td>{{userInfo.id}}</td>
+                <td>{{userInfo.username}}</td>
+                <td>{{userInfo.sportName}}</td>
+                <td>{{userInfo.createdDate}}</td>
+            </tr> 
+        </table>
+        <br>
+        <input class= "updateSendButton" type="button" value="Clear" (click)="clearUsers()">
     </div>
 
-    <div style="padding:15px">
-      <h2>Clear messages:</h2>
+    <div style="padding:15px;">
+    <h2>Clear messages:</h2>
       <table border="1">
         <tr>
           <th>MessageId</th>
@@ -61,9 +76,8 @@
         </tr> 
       </table>
       <br>
-      
-      <input class= "updateSendButton" type="button" value="Clear">
-  </div>
+      <input class= "updateSendButton" type="button" value="Clear" (click)="clearMessages()">
+    </div>
 
    
 </div>

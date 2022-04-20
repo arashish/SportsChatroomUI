@@ -25,7 +25,7 @@ export class EnterIdComponent implements OnInit {
     if (this.username != "") {
       sessionStorage.setItem('username', this.username)
       this.sportName = sessionStorage.getItem('sportName') as string;
-      let resp = this.service.addUsername(new UserInfo(this.username, this.sportName));
+      let resp = this.service.addUsername(new UserInfo("", this.username, this.sportName, ""));
       resp.subscribe(data=>{
         this.router.navigate(["/chatroom"]);
       }, err => {

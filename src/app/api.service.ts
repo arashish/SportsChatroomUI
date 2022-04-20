@@ -39,13 +39,24 @@ export class ApiService {
     return this.http.post<Bulletin>(this.baseUrl + '/updatebulletin', bulletin);
   }
 
-  public retrieveUsers(){
-    return this.http.get(this.baseUrl + '/retrieveusers');
+  public retrieveUsers(): Observable<UserInfo>{
+    return this.http.get<UserInfo>(this.baseUrl + '/retrieveusers');
   }
 
   public retrieveMessages(): Observable<Message>{
     return this.http.get<Message>(this.baseUrl + '/retrievemessages');
   }
+
+  public deleteUsers(){
+    return this.http.delete(this.baseUrl + '/deleteusers');
+  }
+
+  public deleteMessages(){
+    return this.http.delete(this.baseUrl + '/deletemessages');
+  }
+
+
+
   
 }
 

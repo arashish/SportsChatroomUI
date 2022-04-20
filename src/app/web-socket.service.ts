@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Message } from './models/Message';
 import { TempdataService } from './tempdata.service';
 
@@ -9,7 +10,7 @@ export class WebSocketService {
 
   webSocket!: WebSocket;
   message: Message[] = [];
-  constructor(private tempdata: TempdataService) {
+  constructor(private tempdata: TempdataService, private router: Router) {
     
   }
 
@@ -28,6 +29,7 @@ export class WebSocketService {
     } else {
       //this.webSocket = new WebSocket('ws://192.168.1.16:8080/chat')
       alert ("Error: Cannot connect to the chatroom!")
+      this.router.navigate(["/home"]);
     }
 
     this.webSocket.onopen = (event) => {

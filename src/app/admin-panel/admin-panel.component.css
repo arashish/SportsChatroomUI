@@ -5,11 +5,28 @@
     flex-direction: column;
     overflow-y:auto; 
     height: 745px;
-   }
+}
 
-   * {
+.main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.clearBox {
+    overflow-y:auto; 
+    height: 320px;
+    padding:15px;
+    width: 40%;
+    border: 1px gray solid;
+}
+
+
+
+* {
     box-sizing: border-box;
-  }
+}
   
   input[type=text], select, textarea {
     width: 100%;
