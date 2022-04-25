@@ -1,31 +1,4 @@
-.parent {
-  position: relative;
-  display: flex;
-  /* justify-content: flex-end; */
-  flex-direction: column;
-  overflow-y:auto; 
-  height: 600px;
- }
-
- .parent > :first-child {
-  margin-top: auto !important;
-  /* use !important to prevent breakage from child margin settings */
-  }
-
-.messageContainer {
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 0px 10px;
-  margin: 10px 25px;
-  bottom: 10px;
-}
-
-p {
-  font-size: 18px;
-}
-
-.time-right {
+/* .time-right {
   float: right;
   color: #aaa;
 }
@@ -33,21 +6,5 @@ p {
 .time-left {
   float: left;
   color: #999;
-}
+} */
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0px;
-  width: 75px;
-}
-
-.blink_me {
-  animation: mymove 1s infinite alternate;
-}
-
-@keyframes mymove {
-  from {opacity:0;}
-  to {opacity: 1;}
-}

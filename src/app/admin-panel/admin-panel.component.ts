@@ -98,8 +98,20 @@ export class AdminPanelComponent implements OnInit {
     })
   }
 
-  clearUsers(){
+  deleteAll(){
     let resp = this.service.deleteUsers();
+    resp.subscribe(_data=>{
+      window.location.reload();
+    }, err => {
+    if (err instanceof HttpErrorResponse) {
+      console.log("Error deleting the usernames");
+    }
+    })
+  }
+
+  selectedUsername!: string;
+  delete(){
+    let resp = this.service.deleteUsername(this.selectedUsername);
     resp.subscribe(_data=>{
       window.location.reload();
     }, err => {

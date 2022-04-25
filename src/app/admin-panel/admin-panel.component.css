@@ -1,46 +1,8 @@
-.parent {
-    position: relative;
-    display: flex;
-    /* justify-content: flex-end; */
-    flex-direction: column;
-    overflow-y:auto; 
-    height: 745px;
-}
-
-.main {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-}
-
-.clearBox {
-    overflow-y:auto; 
-    height: 320px;
-    padding:15px;
-    width: 40%;
-    border: 1px gray solid;
-}
-
-
-
-* {
+/* * {
     box-sizing: border-box;
+} */ 
+
+.fs{
+  margin: 10px 10px;
+  width: 95%;
 }
-  
-  input[type=text], select, textarea {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-    font-size: 16px;
-  }
-  
-  span {
-    padding: 12px 12px 12px 0;
-    display: inline-block;
-    font-size: 16px;
-    font-weight: 900;
-  }   
-  

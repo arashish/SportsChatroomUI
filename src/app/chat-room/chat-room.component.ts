@@ -6,6 +6,7 @@ import { Message } from '../models/Message';
 import { TempdataService } from '../tempdata.service';
 import { Subscription, switchMap, timer } from 'rxjs';
 import { WebSocketService } from '../web-socket.service';
+import { UserInfo } from '../models/UserInfo';
 
 @Component({
   selector: 'app-chat-room',
@@ -31,6 +32,7 @@ export class ChatRoomComponent implements OnInit {
   bulletins : any;
 
   ngOnInit(): void {
+    this.webSocketService.message = []; //resetting the messages
     this.username = sessionStorage.getItem('username') as string;
     this.sportName = sessionStorage.getItem('sportName') as string;
     if (this.sportName == "Football"){
@@ -47,10 +49,7 @@ export class ChatRoomComponent implements OnInit {
     let resp = this.service.retrieveBulletin();
     resp.subscribe(data=>{
       this.bulletins = data;
-      console.log(this.bulletins);
        for (var bulletin of this.bulletins){
-          console.log(bulletin.sportName);
-          console.log(typeof(bulletin.sportName))
           if (bulletin.sportName === this.sportName)
             {
               this.bulletinMessage = bulletin.message;
@@ -61,8 +60,6 @@ export class ChatRoomComponent implements OnInit {
       alert("Error: Cannot retrieve bulletin messages!");
     }
     })
-
-
 
     this.scrollToBottom();
     this.webSocketService.openWebSocket();
@@ -89,6 +86,23 @@ export class ChatRoomComponent implements OnInit {
     
   // }
 
+  checkUsername(){
+    if (this.username != "") { //check username
+      let resp = this.service.findUsername(new UserInfo("", this.username, this.sportName, ""));
+      resp.subscribe(data=>{
+        this.sendMessage();
+      }, err => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 500) {
+            alert("Error: This user can't send messages anymore. Please logout!");
+          } else {
+            this.errorResponse = true;
+          }
+        }
+       })
+    } 
+  }
+
   sendMessage(){
     const message = new Message(this.username, this.messageToSend, this.sportName,new Date().toUTCString());
     this.webSocketService.sendMessage(message);
@@ -99,6 +113,7 @@ export class ChatRoomComponent implements OnInit {
   logout(){
     sessionStorage.setItem('username','');
     sessionStorage.setItem('sportName','');
+    this.webSocketService.closeWebSocket();
     let resp = this.service.deleteUsername(this.username);
     resp.subscribe(_data=>{
       this.router.navigate(["/home"]);
