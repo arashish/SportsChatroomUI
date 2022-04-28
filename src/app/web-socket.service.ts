@@ -17,15 +17,15 @@ export class WebSocketService {
   public openWebSocket(){
     console.log('Generating: ' + sessionStorage.getItem('sportName'));
     if (sessionStorage.getItem('sportName') == "Football"){
-      this.webSocket = new WebSocket('ws://192.168.1.17:8080/footballchat')
+      this.webSocket = new WebSocket('ws://localhost:8080/footballchat')
     } else if (sessionStorage.getItem('sportName') == "Boxing") {
-      this.webSocket = new WebSocket('ws://192.168.1.17:8080/boxingchat')
+      this.webSocket = new WebSocket('ws://localhost:8080/boxingchat')
     }else if (sessionStorage.getItem('sportName') == "Baseball") {
-      this.webSocket = new WebSocket('ws://192.168.1.17:8080/baseballchat')
+      this.webSocket = new WebSocket('ws://localhost:8080/baseballchat')
     }else if (sessionStorage.getItem('sportName') == "Basketball") {
-      this.webSocket = new WebSocket('ws://192.168.1.17:8080/basketballchat')
+      this.webSocket = new WebSocket('ws://localhost:8080/basketballchat')
     }else if (sessionStorage.getItem('sportName') == "Hockey") {
-      this.webSocket = new WebSocket('ws://192.168.1.17:8080/hockeychat')
+      this.webSocket = new WebSocket('ws://localhost:8080/hockeychat')
     } else {
       //this.webSocket = new WebSocket('ws://localhost:8080/chat')
       alert ("Error: Cannot connect to the chatroom!")

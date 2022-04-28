@@ -14,7 +14,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  baseUrl: string = "http://192.168.1.17:8080";
+  baseUrl: string = "http://localhost:8080";
 
   public addUsername(userInfo: UserInfo){
     return this.http.post<UserInfo>(this.baseUrl + '/addusername', userInfo);
